@@ -1,0 +1,129 @@
+\parskip              0.1in
+\flushbottom
+\itemindent         -1em
+\labelsep             0.5em 
+
+
+%%\oddsidemargin  -6.2truemm
+%%\evensidemargin -6.2truemm
+%
+%%\topmargin 0truept
+%%\headheight 0truept
+%%\headsep 0truept
+%%\footheight 0truept
+%
+\DeclareMathOperator{\argmin}{argmin}
+\DeclareMathOperator{\argmax}{argmax} 
+\allowdisplaybreaks
+
+
+\usepackage{mathtools}
+\newcommand{\defeq}{\vcentcolon=}
+\newcommand{\eqdef}{=\vcentcolon}
+
+\newcommand{\sR}{{\mathds R}}
+
+\newcommand{\cA}{{\mathcal A}}
+\newcommand{\cB}{{\mathcal B}}
+\newcommand{\cC}{{\mathcal C}}
+\newcommand{\cD}{{\mathcal D}}
+\newcommand{\cE}{{\mathcal E}}
+\newcommand{\cF}{{\mathcal F}}
+\newcommand{\cG}{{\mathcal G}}
+\newcommand{\cH}{{\mathcal H}} 
+\newcommand{\cL}{{\mathcal L}}
+\newcommand{\cM}{{\mathcal M}}
+\newcommand{\cN}{{\mathcal N}}
+\newcommand{\cO}{{\mathcal O}}
+\newcommand{\cP}{{\mathcal P}}
+\newcommand{\cQ}{{\mathcal Q}}
+\newcommand{\cR}{{\mathcal R}}
+\newcommand{\cS}{{\mathcal S}}
+\newcommand{\cT}{{\mathcal T}}
+\newcommand{\cW}{{\mathcal W}}
+\newcommand{\cU}{{\mathcal U}}
+\newcommand{\cV}{{\mathcal V}}
+\newcommand{\cX}{{\mathcal X}} 
+\newcommand{\cY}{{\mathcal Y}} 
+\newcommand{\cZ}{{\mathcal Z}} 
+
+\newcommand{\bG}{{\mathbb G}}
+\newcommand{\bN}{{\mathbb N}}
+\newcommand{\bL}{{\mathbb L}}
+\newcommand{\bM}{{\mathbb M}}
+\newcommand{\bR}{{\mathbb R}}
+\newcommand{\bC}{{\mathbb C}}
+\newcommand{\bP}{{\mathbb P}}
+\newcommand{\bQ}{{\mathbb Q}}
+\newcommand{\bS}{{\mathbb S}}
+\newcommand{\bV}{{\mathbb V}}
+\newcommand{\bZ}{{\mathbb Z}}
+
+\newcommand{\srA}{{\mathscr A}}
+\newcommand{\srB}{{\mathscr B}}
+\newcommand{\srC}{{\mathscr C}}
+\newcommand{\srE}{{\mathscr E}}
+\newcommand{\srF}{{\mathscr F}}
+\newcommand{\srT}{{\mathscr T}}
+\newcommand{\srP}{{\mathscr P}}
+
+\newcommand{\pzcP}{{\mathpzc P}}
+
+
+
+\newcommand\indep{\protect\mathpalette{\protect\independenT}{\perp}} %% statistical independence
+\def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
+
+\newcommand{\mb}[1]{\boldsymbol{#1}}
+\newcommand{\sech}{\mathrm{sech}\,}
+\newcommand{\tr}[1]{\mathrm{tr}\left(#1 \right) }
+\newcommand{\ind}[1]{\mathds{1}\left\{ #1 \right\}} % indicator function
+\newcommand{\brac}[1]{\left[#1\right]}
+\newcommand{\set}[1]{\left\{#1\right\}}
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\paren}[1]{\left(#1\right)}
+\newcommand{\norm}[2]{\left\|#1\right\|_{#2}}
+\newcommand{\kl}[2]{\mathds{KL}\left( #1 \left\|\right. #2 \right)}
+\newcommand{\divg}[3]{\mathds{D}^{#1}\left( #2 \left\|\right. #3 \right)}
+\newcommand{\E}[2]{\mathds{E}_{#1}\left[ #2 \right]}
+\newcommand{\Em}[2]{\widehat{\mathds{E}}_{#1}\left[ #2 \right]}
+\newcommand{\diag}[1]{\text{diag}\left(#1\right)}
+\newcommand{\vect}[1]{\text{vec}\left(#1\right)}
+\newcommand{\inn}[2]{\left\langle  #1\,,\, #2   \right\rangle}
+\newcommand{\cov}[2]{\text{cov}\left(  #1\,,\, #2   \right)}
+\newcommand{\partdiff}[2]{\frac{\partial #1}{ \partial #2}}
+\newcommand{\dpartdiff}[2]{\dfrac{\partial #1}{ \partial #2}}
+\newcommand{\grad}[1]{\nabla_{#1}}
+\newcommand{\sign}[1]{\text{sign}\left\{#1\right\}}
+
+
+\newcommand{\rlat}[2]{\left.{#1}\right\vert_{#2} }
+\newcommand{\rev}[1]{{\color{blue}#1}} %revise of the text
+\newcommand{\com}[1]{\textbf{\color{red}(COMMENT: #1)}} %comment of the text
+
+%
+%\theoremstyle{plain}
+%\renewcommand{\thesection}{\arabic{section}} \renewcommand{\thetheorem}{\thesection.\arabic{theorem}}
+\newtheorem{theorem}{\textbf{Theorem}}[section]
+\newtheorem{lem}[theorem]{\textbf{Lemma}}
+\newtheorem{result}[theorem]{\textbf{Result}}
+\newtheorem{proposition}[theorem]{\textbf{Proposition}}
+\newtheorem{corollary}[theorem]{\textbf{Corollary}}
+%\newcounter{theorem}
+\renewcommand{\thetheorem}{\arabic{section}.\arabic{theorem}}
+%\newenvironment{proof}[1][Proof:]{\begin{trivlist}
+%\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{solution}[1][Solution:]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Example]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{remark}[1][Remark]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+%\newcommand*{\QEDB}{\hfill\ensuremath{\square}}%
+%\newcommand{\qed}{\nobreak \ifvmode \relax \else
+%      \ifdim\lastskip<1.5em \hskip-\lastskip
+%      \hskip1.5em plus0em minus0.5em \fi \nobreak
+%      \vrule height0.75em width0.5em depth0.25em\fi}
