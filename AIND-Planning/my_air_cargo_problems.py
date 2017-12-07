@@ -132,9 +132,17 @@ class AirCargoProblem(Problem):
         """
         # TODO implement
         possible_actions = []
-       # for idx, char in state:
-       #     if char == 'T':
-       #         possible_actions.append(self.actions_list[idx])
+       
+        # find postive proposition logical expression at current state
+        kb = PropKB() 
+        kb.tell(decode_state(state, self.state_map).pos_sentence())
+
+        # find actions in actions_list such that under current state
+        #        all positive preconditions are met 
+        #  and   neither negative precondition are met 
+        for action in self.actions_list:
+            if all([clause in kb.clauses for clause in action.precond_pos]) and not any([clause in kb.clauses for clause in action.precond_neg ]):
+                possible_actions.append(action)
 
         return possible_actions
 
@@ -150,8 +158,22 @@ class AirCargoProblem(Problem):
         # TODO implement
         new_state = FluentState([], [])
        
-        old_state = decode_state(state, self.state_map)
-        #self.state_map = action(state.sentence())
+        # current state
+        cur_state = decode_state(state, self.state_map)
+
+        # to execute an action, at current state
+        # 1. all postive preconditions  remains in new_state.pos if they are not in the remove list as an effect of the action; 
+        # 2. all negative preconditions remains in new_state.neg if they are not in the add list for the effect of the action
+
+        new_state.pos = [fluent for fluent in cur_state.pos if fluent not in action.effect_rem]
+        new_state.neg = [fluent for fluent in cur_state.neg if fluent not in action.effect_add]
+
+        # also, add remaining expr in action.effect_add to new_state.pos and 
+        #       add remaining expr in action.effect_rem to new_state.neg
+        new_state.pos = new_state.pos + [fluent for fluent in action.effect_add if fluent not in new_state.pos]
+        new_state.neg = new_state.neg + [fluent for fluent in action.effect_rem if fluent not in new_state.neg]
+
+
         return encode_state(new_state, self.state_map)
 
     def goal_test(self, state: str) -> bool:
@@ -193,6 +215,15 @@ class AirCargoProblem(Problem):
         """
         # TODO implement (see Russell-Norvig Ed-3 10.2.3  or Russell-Norvig Ed-2 11.2)
         count = 0
+
+        # we need to count number of actions that needed to satisfy each goal condition in the goal state. If the goal condition is already satisified, no additional action needed. 
+
+        # define a propositional logic and find all positive conditions in node state
+        kb = PropKB()
+        kb.tell(decode_state(node.state, self.state_map).pos_sentence())
+
+        count = len([clause for clause in self.goal if clause not in kb.clauses])
+
         return count
 
 
