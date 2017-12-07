@@ -162,8 +162,10 @@ class AirCargoProblem(Problem):
         cur_state = decode_state(state, self.state_map)
 
         # to execute an action, at current state
-        # 1. all postive preconditions  remains in new_state.pos if they are not in the remove list as an effect of the action; 
-        # 2. all negative preconditions remains in new_state.neg if they are not in the add list for the effect of the action
+        # 1. all postive preconditions  remains in new_state.pos 
+        #          if they are not in the remove list as an effect of the action; 
+        # 2. all negative preconditions remains in new_state.neg 
+        #          if they are not in the add list for the effect of the action
 
         new_state.pos = [fluent for fluent in cur_state.pos if fluent not in action.effect_rem]
         new_state.neg = [fluent for fluent in cur_state.neg if fluent not in action.effect_add]
@@ -216,12 +218,14 @@ class AirCargoProblem(Problem):
         # TODO implement (see Russell-Norvig Ed-3 10.2.3  or Russell-Norvig Ed-2 11.2)
         count = 0
 
-        # we need to count number of actions that needed to satisfy each goal condition in the goal state. If the goal condition is already satisified, no additional action needed. 
+        # we need to count number of actions that needed to satisfy each goal condition in the goal state. 
+        # If the goal condition is already satisified, no additional action needed. 
 
         # define a propositional logic and find all positive conditions in node state
         kb = PropKB()
         kb.tell(decode_state(node.state, self.state_map).pos_sentence())
 
+        # count how many expressions in goal conditions are not in the current node state positive conditions
         count = len([clause for clause in self.goal if clause not in kb.clauses])
 
         return count
