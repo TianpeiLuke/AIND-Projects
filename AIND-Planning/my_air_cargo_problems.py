@@ -141,7 +141,8 @@ class AirCargoProblem(Problem):
         #        all positive preconditions are met 
         #  and   neither negative precondition are met 
         for action in self.actions_list:
-            if all([clause in kb.clauses for clause in action.precond_pos]) and not any([clause in kb.clauses for clause in action.precond_neg ]):
+            if all([clause in kb.clauses for clause in action.precond_pos]) \
+               and not any([clause in kb.clauses for clause in action.precond_neg ]):
                 possible_actions.append(action)
 
         return possible_actions
