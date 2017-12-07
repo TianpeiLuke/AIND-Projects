@@ -13,7 +13,7 @@ In this lab, you will teach Pac-Man to search his world to complete the followin
 This lab is possible thanks to the generous contributions of the UC Berkeley AI division and their work on the [Pac-Man Project](http://inst.eecs.berkeley.edu/~cs188/pacman/project_overview.html). The below is an example of what your AI will help Pac-Man do by the end of this lab!
 
 
-[![pacman](/pacman.gif)]
+![pacman](pacman.gif)
 
 
 
