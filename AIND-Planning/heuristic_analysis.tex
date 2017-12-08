@@ -1,0 +1,234 @@
+\documentclass[11pt]{article}
+\usepackage[scaled=0.92]{helvet}
+\usepackage{geometry}
+\geometry{letterpaper,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+\usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent %\usepackage{graphicx}
+\usepackage{amsmath,amssymb, mathrsfs, dsfont}
+\usepackage{tabularx}
+\usepackage[font=footnotesize,labelfont=bf]{caption}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{url}
+%\usepackage[linkbordercolor ={1 1 1} ]{hyperref}
+%\usepackage[sf]{titlesec}
+
+\usepackage{../report}
+
+\begin{document}
+\title{Heuristic Analysis}
+\author{ Tianpei Xie}
+\date{ Dec 7th., 2017 }
+\maketitle
+\section{Optimal plan}
+\begin{itemize}
+\item For Problem $1$, the shortest path length plan is 
+\begin{align*}
+&Load(C2, P2, JFK) \\
+  &\rightarrow Load(C1, P1, SFO)\\
+ & \rightarrow Fly(P2, JFK, SFO) \\
+  &\rightarrow Unload(C2, P2, SFO)\\
+  &\rightarrow Fly(P1, SFO, JFK)\\
+ &\rightarrow  Unload(C1, P1, JFK)
+\end{align*}
+
+\item For Problem $2$, the shortest path length plan is 
+\begin{align*}
+&Load(C2, P2, JFK)\\
+&\rightarrow  Load(C1, P1, SFO)\\
+&\rightarrow Load(C3, P3, ATL)\\
+&\rightarrow Fly(P2, JFK, SFO)\\
+&\rightarrow Unload(C2, P2, SFO)\\
+&\rightarrow Fly(P1, SFO, JFK)\\
+&\rightarrow Unload(C1, P1, JFK)\\
+&\rightarrow Fly(P3, ATL, SFO)\\
+&\rightarrow Unload(C3, P3, SFO)
+\end{align*}
+
+\item For Problem $3$, the shortest path length plan is
+\begin{align*}
+&Load(C2, P2, JFK)\\
+&\rightarrow  Load(C1, P1, SFO)\\
+&\rightarrow  Fly(P2, JFK, ORD)\\
+&\rightarrow  Load(C4, P2, ORD)\\
+&\rightarrow Fly(P1, SFO, ATL)\\
+&\rightarrow Load(C3, P1, ATL)\\
+&\rightarrow  Fly(P1, ATL, JFK)\\
+&\rightarrow  Unload(C1, P1, JFK)\\
+&\rightarrow  Unload(C3, P1, JFK)\\
+&\rightarrow  Fly(P2, ORD, SFO)\\
+&\rightarrow Unload(C2, P2, SFO)\\
+&\rightarrow Unload(C4, P2, SFO)
+\end{align*}
+\end{itemize}
+
+
+\section{Comparison of non-heuristic search}
+
+\begin{table*}[h]
+ \footnotesize 
+ \centering
+\begin{tabular*}{0.995\textwidth}{|m{97pt}<{\centering}|m{60pt}<{\centering}|m{60pt}<{\centering}|m{60pt}<{\centering}|m{60pt}<{\centering}|m{60pt}<{\centering}|}
+\hline 
+Searching strategy & optimality & time elapsed  & number of node expansions &  new nodes & plan length \\ 
+\hline 
+\vspace{5pt} breadth-first-search \vspace{5pt} & min-plan-length & $0.0201$ sec.  & $43$ & $180$  & $\mb{6}$ \\ 
+\hline 
+\vspace{5pt} breadth-first-tree-search \vspace{5pt} & min-plan-length  & $0.6608$ sec.  & $1458$ & $5960$  & $\mb{6}$ \\ 
+\hline 
+\vspace{5pt} depth-first-graph-search \vspace{5pt} &  min-time/fastest & $\mb{0.0050}$ sec.  & $\mb{12}$ & $48$  & $12$ \\ 
+\hline 
+\vspace{5pt} depth-limited-search \vspace{5pt} &  & $0.0641$ sec.  & $101$ & $414$  & $50$ \\ 
+\hline 
+\vspace{5pt} uniform-cost-search \vspace{5pt} &  min-plan-length   & $0.0255$ sec.  & $55$ & $224$  & $6$ \\ 
+\hline 
+%\vspace{5pt} recursive-best-first-search \vspace{2pt} &   & $1.8139$ sec.  & $4229$ & $17029$  & $6$ \\ 
+%\hline 
+\end{tabular*} \vspace{-5pt}
+\caption{\footnotesize Comparison of performance for problem $1$} 
+\label{tab: p1}
+\end{table*}
+
+\begin{table*}[h]
+ \footnotesize 
+ \centering
+\begin{tabular*}{0.995\textwidth}{|m{97pt}<{\centering}|m{60pt}<{\centering}|m{60pt}<{\centering}|m{60pt}<{\centering}|m{60pt}<{\centering}|m{60pt}<{\centering}|}
+\hline 
+Searching strategy & optimality & time elapsed  & number of node expansions &  new nodes & plan length \\ 
+\hline 
+\vspace{5pt} breadth-first-search \vspace{5pt} & min-plan-length and fastest & $\mb{5.8467}$ sec.  & $3343$ & $30509$  & $\mb{9}$ \\ 
+\hline 
+\vspace{5pt} breadth-first-tree-search \vspace{5pt} &  & not finished ($>10$ min) & $*$ & $*$  & $*$ \\ 
+\hline 
+\vspace{5pt} depth-first-graph-search \vspace{5pt} &  & $8.6659$ sec.  & $\mb{1669}$ & $14863$  & $1444$ \\ 
+\hline 
+\vspace{5pt} depth-limited-search \vspace{5pt} &  & $603.6768$ sec.  & $222719$ & $2054119$  & $50$ \\ 
+\hline 
+\vspace{5pt} uniform-cost-search \vspace{5pt} & min-plan-length  & $8.0126$ sec.  & $4853$ & $44041$  & $9$ \\ 
+\hline 
+%\vspace{5pt} recursive-best-first-search \vspace{2pt} &   & $1.8139$ sec.  & $4229$ & $17029$  & $6$ \\ 
+%\hline 
+\end{tabular*} \vspace{-5pt}
+\caption{\footnotesize Comparison of performance for problem $2$} 
+\label{tab: p2}
+\end{table*}
+
+
+\begin{table*}[h]
+ \footnotesize 
+ \centering
+\begin{tabular*}{0.995\textwidth}{|m{97pt}<{\centering}|m{60pt}<{\centering}|m{60pt}<{\centering}|m{60pt}<{\centering}|m{60pt}<{\centering}|m{60pt}<{\centering}|}
+\hline 
+Searching strategy & optimality & time elapsed  & number of node expansions &  new nodes & plan length \\ 
+\hline 
+\vspace{5pt} breadth-first-search \vspace{5pt} & min-plan-length  & ${28.3921}$ sec.  & $14663$ & $129631$  & $\mb{12}$ \\ 
+\hline 
+\vspace{5pt} breadth-first-tree-search \vspace{5pt} &  & not finished ($>10$ min) & $*$ & $*$  & $*$ \\ 
+\hline 
+\vspace{5pt} depth-first-graph-search \vspace{5pt} & fastest  & $\mb{1.9802}$ sec.  & $592$ & $4927$  & $571$ \\ 
+\hline 
+\vspace{5pt} depth-limited-search \vspace{5pt} &  & not finished ($>10$ min) & $*$ & $*$  & $*$ \\ 
+\hline 
+\vspace{5pt} uniform-cost-search \vspace{5pt} & min-plan-length  & $35.9198$ sec.  & $18223$ & $159618$  & $12$ \\ 
+\hline 
+%\vspace{5pt} recursive-best-first-search \vspace{2pt} &   & $1.8139$ sec.  & $4229$ & $17029$  & $6$ \\ 
+%\hline 
+\end{tabular*} \vspace{-5pt}
+\caption{\footnotesize Comparison of performance for problem $3$} 
+\label{tab: p3}
+\end{table*}
+
+We summarize  results as followings: 
+\begin{itemize}
+\item As shown in Table \ref{tab: p1}, Table \ref{tab: p2} and Table \ref{tab: p3}, the \textbf{BFS} always find the \emph{shortest path} within a relatively limited amount of time.  
+
+\item On the other hand, the \textbf{DFS} has the least node expansions. For Problem $2$ and Problem $3$, the DFS find the solution with \emph{minimal time}, i.e. DFS is fastest in these problems.  The drawback is that the returned path length is always is largest. 
+
+\item Both DFS and BFS (and uniform-cost-search) can find a solution within $10$ mins. But the depth-limited-search may need more time. 
+
+\item Uniform-Cost-Search has similar performance as BFS, which finds the shortest path.
+
+\item The BFS-tree-search may not find a solution when the graph is not tree.
+
+\item Depth-limited-search set upper bounds on the length of returned path $50$, but requires a great amount of node expansion and is very slow. ($>10$ min for Problem $2$ and  Problem $3$)  
+\end{itemize}
+
+\section{Comparison of A$^*$ with different heuristic}
+\begin{table*}[h]
+ \footnotesize 
+ \centering
+\begin{tabular*}{0.995\textwidth}{|m{97pt}<{\centering}|m{60pt}<{\centering}|m{60pt}<{\centering}|m{60pt}<{\centering}|m{60pt}<{\centering}|m{60pt}<{\centering}|}
+\hline 
+Searching strategy & optimality & time elapsed  & number of node expansions &  new nodes & plan length \\ 
+\hline 
+\vspace{5pt} $A^*$ with ignore precondition \vspace{5pt} & min-plan-length and fastest & $\mb{0.0271}$ sec.  & $41$ & $170$  & $\mb{6}$ \\ 
+\hline 
+\vspace{5pt} $A^*$ with level sum \vspace{5pt} & min-plan-length  & $8.04801$ sec.  & $\textbf{11}$ & $50$  & $\mb{6}$ \\ 
+\hline 
+\end{tabular*} \vspace{-5pt}
+\caption{\footnotesize Comparison of $A^*$ performance for problem $1$} 
+\label{tab: p1}
+\end{table*}
+
+
+\begin{table*}[h]
+ \footnotesize 
+ \centering
+\begin{tabular*}{0.995\textwidth}{|m{97pt}<{\centering}|m{60pt}<{\centering}|m{60pt}<{\centering}|m{60pt}<{\centering}|m{60pt}<{\centering}|m{60pt}<{\centering}|}
+\hline 
+Searching strategy & optimality & time elapsed  & number of node expansions &  new nodes & plan length \\ 
+\hline 
+\vspace{5pt} $A^*$ with ignore precondition \vspace{5pt} & min-plan-length and fastest & $3.0463$ sec.  & $1450$ & $13303$  & $\mb{9}$ \\ 
+\hline 
+\vspace{5pt} $A^*$ with level sum \vspace{5pt} & & $4449.5539$ sec.  & $\textbf{86}$ & $841$  & $9$ \\ 
+\hline 
+\end{tabular*} \vspace{-5pt}
+\caption{\footnotesize Comparison of  $A^*$ performance for problem $2$} 
+\label{tab: p2}
+\end{table*}
+
+
+\begin{table*}[h]
+ \footnotesize 
+ \centering
+\begin{tabular*}{0.995\textwidth}{|m{97pt}<{\centering}|m{60pt}<{\centering}|m{60pt}<{\centering}|m{60pt}<{\centering}|m{60pt}<{\centering}|m{60pt}<{\centering}|}
+\hline 
+Searching strategy & optimality & time elapsed  & number of node expansions &  new nodes & plan length \\ 
+\hline 
+\vspace{5pt} $A^*$ with ignore precondition \vspace{5pt} & min-plan-length & $11.9714$ sec.  & $5040$ & $44944$  & $\mb{12}$ \\ 
+\hline 
+\vspace{5pt} $A^*$ with level sum \vspace{5pt} &  & $>20$ min.  & $*$ & $*$  & $*$ \\ 
+\hline 
+\end{tabular*} \vspace{-5pt}
+\caption{\footnotesize Comparison of $A^*$ performance for problem $3$} 
+\label{tab: p3}
+\end{table*}
+
+We summarize  results as followings: 
+\begin{itemize}
+\item $A^*$ algorithm with both heuristics can find the optimal solution with shortest path. 
+
+\item Using level-sum heuristic, the $A^*$ has least node expansion but is significant slower than the algorithm with ignore condition heuristic. Using ignore condition heuristic, the algorithm is faster. 
+\end{itemize}
+
+\section{Best heuristic and non-heuristic search}
+\begin{itemize}
+\item In terms of \emph{speed}, the best heuristic search is $A^*$ with\emph{ ignore precondition heuristic}. In terms of \emph{node expansion},  $A^*$ with \emph{level-sum heuristic} has fewer node expansion. 
+
+\item The optimality of $A^*$ search is given in book \cite{poole2010artificial} chapter 3.6.1, with a simplied proof seen in footnote\footnote{\url{https://stackoverflow.com/questions/10195780/proof-of-a-algorithms-optimality-when-heuristics-always-underestimates}}. In particular, both ignore preconditions and level-sum heuristics satiesfies the admissable and monotonic conditions. 
+
+\item  $A^*$ search algorithm  with both heuristics can find the shortest path plan, \emph{same} as the BFS.  This is because both heuristic is admissible and optimistic. With level-sum heuristic, it can have significantly \emph{fewer} node expansion than BFS. 
+
+\item Compare to DFS, $A^*$ search algorithm  with both heuristics can find the shorter path plan. With level-sum heuristic, it can have similar amount of  node expansion  as DFS. 
+
+\item The reason ignore precondition heuristic is faster than the level-sum heuristic  is because the latter requires to run a loop of evaluation until the goal which is approximately in $O(h)$ where $h$ is the level size of longest path. For a complicated problem such as Problem $2$ or Problem $3$, the longest path is larger than $1000$, which is very slow for each step of evaluation. 
+
+\item The reason $A^*$ returns the shortest path is because the path length is used as the cost. 
+
+\item With proper choice of heuristic, $A^*$ algorithm can be seen as having merits of both BFS and DFS. 
+\end{itemize}
+
+\newpage
+\bibliographystyle{plain}
+%\bibliographystyle{IEEEbib}
+\bibliography{aind_plan.bib}
+\end{document}

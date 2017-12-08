@@ -1,0 +1,55 @@
+\documentclass[11pt]{article}
+\usepackage[scaled=0.92]{helvet}
+\usepackage{geometry}
+\geometry{letterpaper,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+\usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent %\usepackage{graphicx}
+\usepackage{amsmath,amssymb, amsthm, mathrsfs, dsfont}
+\usepackage{tabularx}
+\usepackage[font=footnotesize,labelfont=bf]{caption}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage{algorithm}
+%\usepackage{algpseudocode}
+%\usepackage{algcompatible}
+\usepackage{algorithmic}
+%\usepackage[linkbordercolor ={1 1 1} ]{hyperref}
+%\usepackage[sf]{titlesec}
+
+\usepackage{../report}
+
+%\usepackage{appendix}
+%\usepackage{algorithm}
+%\usepackage{algorithmic}
+
+%\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+%\renewcommand{\algorithmicensure}{\textbf{Output:}}
+
+
+
+\begin{document}
+\title{Literature review for AI Planning}
+\date{Dec 7th., 2017 }
+\author{Tianpei Xie}
+\maketitle
+\section{Review}
+AI planning is an indispensable component in many complex systems such as robotics, scheduling systems and control systems. The goal of AI planning is provide a solution strategy to exploit the complex and often dynamic environment in order to reach the final goal.  Historically, the first major planning system, STRIPS, was introduced by Fikes and Nilsson \cite{fikes1971strips} as a planning component of the Shakey robot project.  STRIPS uses a version of theorem proving system to establish the truth of preconditions of actions and it provides an action representation method that is influential to its descendants.  In $1986$, Pednault introduced the Action Description Language (ADL) to relax the constraints of STRIPS language for solving more realistic problems. In the course, we learn the Problem Domain Description
+Language or PDDL \cite{mcdermott1998pddl}, which was introduced as a computer-parsable, standardized syntax for representing STRIPS, ADL, and other languages. 
+
+Although researchers have studied planning since the early days of AI,  developments in late 90s have revolutionized the
+field. Two approaches, in particular, have attracted much attention: (1) the two-phase ${GRAPHPLAN}$ planning algorithm by Blum and Furst \cite{blum1997fast} and (2) methods for compiling planning problems into propositional formulas for
+solution using the latest, speedy systematic and stochastic $SAT$ algorithms \cite{bayardo1997using, hoos1999towards, hoos1999run}. GPAPHPLAN framework is further extended to handle probabilistic planning  problem \cite{blum1999probabilistic}.  On one hand,  Keihler et al \cite{koehler1998planning} developed IPP  as a highly optimized C implementation of GRAPHPLAN, extended to handle expressive actions (for example, universal
+quantification and conditional effects). Similarly,  STAN \cite{long1999efficient} is another highly optimized C implementation that uses an in-place graph representation and performs sophisticated type analysis to compute invariants. On the other hands, the representations used by GRAPHPLAN form the basis of the most successful
+encodings of planning problems into propositional SAT.  Thus, these approaches have much in common, which are both affected by the performance of constraint satisfaction and search technology. In \cite{weld1999recent}, the performance of both frameworks are compared. 
+
+In recent years, AI Planning has gone beyond the general problem solving to more specific. For instance, in the book by Wikins \cite{wilkins2014practical}, Reactive planning as an extension of Classic AI Planning has been discussed. AI planning can also be used in Cost-Based Query Optimization \cite{robinson2014cost}.  In \cite{khouadjia2013pareto} Pareto-Based Multiobjective AI Planning is introduced as an extension of the classic AI planning. It considers metrics that can incorporate
+several objectives so that metric sensitive planners  are able to give different plans for different metrics. The system then effectively explore and approximate the Pareto front of the multiobjective problem, i.e. the set of optimal trade-offs between the antagonistic objectives. As stated in the book by Russell \cite{russell1995modern}, "\emph{Planning research has been central to AI since its inception, and papers on planning are a staple of mainstream AI journals and conferences}". It is still in active development. 
+
+
+
+\clearpage
+\newpage
+\bibliographystyle{plain}
+%\bibliographystyle{IEEEbib}
+\bibliography{aind_plan.bib}
+\end{document}
